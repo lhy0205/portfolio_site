@@ -1,0 +1,29 @@
+.strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.track {
+  display: flex;
+  animation: marquee 25s linear infinite;
+  white-space: nowrap;
+  padding: 1.5rem 0;
+}
+.track:hover { animation-play-state: paused; }
+.chip {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 2rem;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink2);
+  border-right: 1px solid var(--line);
+  white-space: nowrap; flex-shrink: 0;
+}
+.dot {
+  width: 4px; height: 4px;
+  border-radius: 50%; background: var(--accent); flex-shrink: 0;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

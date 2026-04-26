@@ -1,0 +1,56 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.8rem 3.5rem;
+  background: rgba(245, 244, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav::after {
+  content: '';
+  position: absolute; bottom: 0; left: 3.5rem; right: 3.5rem;
+  height: 1px; background: var(--line);
+}
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.right { display: flex; align-items: center; gap: 3rem; }
+.links { display: flex; gap: 2.5rem; list-style: none; }
+.links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  position: relative;
+  transition: color 0.25s;
+}
+.links a::after {
+  content: '';
+  position: absolute; left: 0; bottom: -3px;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+.links a:hover { color: var(--ink); }
+.links a:hover::after { width: 100%; }
+.cta {
+  padding: 0.55rem 1.4rem;
+  border: 1px solid var(--ink3);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  transition: all 0.25s;
+}
+.cta:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 900px) {
+  .nav { padding: 1.5rem; }
+  .links { display: none; }
+}

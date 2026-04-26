@@ -1,0 +1,263 @@
+.section {
+  padding: 8rem 3.5rem;
+  border-top: 1px solid var(--line);
+  isolation: isolate;   /* 이 섹션 안에서 쌓임 컨텍스트 격리 */
+  position: relative;
+  z-index: 0;
+}
+
+.scrollHint {
+  font-size: 0.72rem;
+  color: var(--ink3);
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.fadeWrap {
+  position: relative;
+  overflow: clip;        /* 카드가 섹션 밖으로 삐져나오지 않도록 클리핑 */
+}
+.fadeLeft, .fadeRight {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 3;
+}
+.fadeLeft  { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+.fadeRight { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+
+/* ── 스크롤 래퍼 ── */
+.wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0 0 2rem;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.wrapper::-webkit-scrollbar { height: 4px; }
+.wrapper::-webkit-scrollbar-track { background: var(--bg2); }
+.wrapper::-webkit-scrollbar-thumb { background: var(--ink3); border-radius: 2px; }
+
+/* ── 트랙 ── */
+.track {
+  display: flex;
+  position: relative;
+  min-width: max-content;
+  padding: 0 5rem;
+}
+/* 가로 중심선 */
+.track::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 240px;
+  height: 2px;
+  background: var(--ink3);
+}
+
+/* ── 아이템 공통 ── */
+.item {
+  position: relative;
+  flex: 0 0 220px;
+  height: 480px;
+}
+
+/* ── 가지(stem) ── */
+.stem {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 40px;
+  background: var(--ink3);
+}
+.up   .stem { bottom: 50%; top: auto; }
+.down .stem { top: 50%;   bottom: auto; }
+
+/* ── 닷 ── */
+.dot {
+  position: absolute;
+  left: 50%;
+  top: 240px;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--ink3);
+  z-index: 2;
+  transition: transform 0.2s;
+}
+.item:hover .dot { transform: translate(-50%, -50%) scale(1.5); }
+
+.eduDot      { border-color: var(--accent2); background: rgba(61,95,168,0.15);  }
+.researchDot { border-color: var(--accent);  background: rgba(139,111,78,0.15); }
+.awardDot    { border-color: #9A7C3A;        background: rgba(154,124,58,0.15); }
+.paperDot    { border-color: #3D8A5A;        background: rgba(80,140,100,0.15); }
+
+/* ── 카드 ── */
+.card {
+  position: absolute;
+  left: 10px; right: 10px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1rem 1rem 0.85rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.item:hover .card {
+  border-color: var(--ink3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.up   .card { bottom: calc(50% + 42px); }
+.down .card { top:    calc(50% + 42px); }
+
+/* ── 배지 ── */
+.badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 0.1rem;
+}
+.edu      { background: rgba(61,95,168,0.12);  color: var(--accent2); }
+.research { background: rgba(139,111,78,0.12); color: var(--accent);  }
+.award    { background: rgba(154,124,58,0.12); color: #9A7C3A;        }
+.paper    { background: rgba(80,140,100,0.12); color: #3D8A5A;        }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.sub {
+  font-size: 0.72rem;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+.period {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--ink3);
+  letter-spacing: 0.06em;
+  margin-top: 0.15rem;
+}
+
+/* ── 활동 테이블 ── */
+.tableWrap {
+  margin-top: 5rem;
+  overflow-x: auto;
+}
+
+.tableLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 1.2rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.table thead tr {
+  border-bottom: 2px solid var(--ink3);
+}
+
+.table th {
+  text-align: left;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  padding: 0 1rem 0.9rem 0;
+  white-space: nowrap;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+}
+.table tbody tr:hover { background: var(--bg2); }
+
+.table td {
+  padding: 0.95rem 1rem 0.95rem 0;
+  vertical-align: middle;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+.tdPeriod {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--ink3) !important;
+  letter-spacing: 0.04em;
+  min-width: 160px;
+}
+
+.tdTitle {
+  font-family: var(--font-serif);
+  font-size: 0.98rem !important;
+  color: var(--ink) !important;
+  font-weight: 400;
+  min-width: 220px;
+}
+
+.tdRole {
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.tdOrg {
+  font-size: 0.78rem;
+  min-width: 160px;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  min-width: 140px;
+}
+
+.tag {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  background: var(--bg3);
+  color: var(--ink3);
+  border-radius: 2px;
+}
+
+.tdResult {
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--accent) !important;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 900px) {
+  .section { padding: 5rem 1.5rem; }
+  .tableWrap { margin-top: 3rem; }
+  .table th, .table td { padding-right: 0.75rem; }
+}
